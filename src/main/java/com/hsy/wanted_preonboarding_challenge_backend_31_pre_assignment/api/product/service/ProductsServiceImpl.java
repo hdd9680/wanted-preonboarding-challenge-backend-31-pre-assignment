@@ -1,4 +1,4 @@
-package com.hsy.wanted_preonboarding_challenge_backend_31_pre_assignment.api.products.service;
+package com.hsy.wanted_preonboarding_challenge_backend_31_pre_assignment.api.product.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

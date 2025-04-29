@@ -1,6 +1,6 @@
-package com.hsy.wanted_preonboarding_challenge_backend_31_pre_assignment.api.products.controller;
+package com.hsy.wanted_preonboarding_challenge_backend_31_pre_assignment.api.product.controller;
 
-import com.hsy.wanted_preonboarding_challenge_backend_31_pre_assignment.api.products.service.ProductsService;
+import com.hsy.wanted_preonboarding_challenge_backend_31_pre_assignment.api.product.service.ProductsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
