@@ -15,9 +15,9 @@ import java.time.LocalDateTime;
 public class ProductsEntity {
 
     @Id
-    private int id;
-    private int sellerId;
-    private int brandId;
+    private Long id;
+    private Long sellerId;
+    private Long brandId;
     private String name;
     private String slug;
     private String shortDescription;
