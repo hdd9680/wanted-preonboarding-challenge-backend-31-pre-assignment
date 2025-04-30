@@ -13,6 +13,7 @@ import lombok.Setter;
 public class ProductPrice {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private Double basePrice;

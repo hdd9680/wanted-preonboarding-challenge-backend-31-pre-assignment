@@ -17,6 +17,7 @@ import java.util.Map;
 public class ProductDetail {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(columnDefinition = "numeric(10,2)")

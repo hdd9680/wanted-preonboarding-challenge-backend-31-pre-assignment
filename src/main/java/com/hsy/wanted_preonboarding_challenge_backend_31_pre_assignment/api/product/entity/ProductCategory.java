@@ -12,7 +12,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "product_categories")
 public class ProductCategory {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private Boolean isPrimary;

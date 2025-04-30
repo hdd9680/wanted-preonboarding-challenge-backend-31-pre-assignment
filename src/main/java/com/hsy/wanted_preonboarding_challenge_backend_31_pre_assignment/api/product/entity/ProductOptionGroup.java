@@ -15,6 +15,7 @@ import java.util.List;
 public class ProductOptionGroup {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private String name;

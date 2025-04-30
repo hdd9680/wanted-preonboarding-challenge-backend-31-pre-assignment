@@ -14,6 +14,7 @@ import lombok.Setter;
 public class ProductTag {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @ManyToOne

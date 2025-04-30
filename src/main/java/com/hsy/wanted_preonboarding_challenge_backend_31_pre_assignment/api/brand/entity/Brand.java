@@ -1,8 +1,6 @@
 package com.hsy.wanted_preonboarding_challenge_backend_31_pre_assignment.api.brand.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +13,7 @@ import lombok.Setter;
 public class Brand {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private String name;
