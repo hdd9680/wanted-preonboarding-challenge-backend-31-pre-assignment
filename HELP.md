@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.hsy.wanted-preonboarding-challenge-backend-31-pre-assignment' is invalid and this project uses 'com.hsy.wanted_preonboarding_challenge_backend_31_pre_assignment' instead.
+* The original package name 'com.hsy.wanted-preonboarding-challenge-backend-31-pre-assignment' is invalid and this project uses 'com.hsy.preonboarding_backend31' instead.
 
 # Getting Started
 
