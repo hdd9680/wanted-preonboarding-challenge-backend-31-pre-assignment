@@ -2,9 +2,9 @@ package com.hsy.preonboarding_backend31.api.product.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
@@ -28,4 +28,13 @@ public class ProductOptionGroup {
 
     @OneToMany(mappedBy = "optionGroup")
     private List<ProductOption> options;
+
+    @Builder
+    public ProductOptionGroup(Long id, String name, Integer displayOrder, Product product, List<ProductOption> options) {
+        this.id = id;
+        this.name = name;
+        this.displayOrder = displayOrder;
+        this.product = product;
+        this.options = options;
+    }
 }

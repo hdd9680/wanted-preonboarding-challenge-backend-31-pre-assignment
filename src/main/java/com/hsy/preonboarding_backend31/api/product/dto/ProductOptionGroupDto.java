@@ -1,6 +1,7 @@
 package com.hsy.preonboarding_backend31.api.product.dto;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,4 +17,13 @@ public class ProductOptionGroupDto {
     private Integer displayOrder;
 
     private List<ProductOptionDto> options;
+
+    @Builder
+    public ProductOptionGroupDto(Long id, Long productId, String name, Integer displayOrder) {
+        this.id = id;
+        this.productId = productId;
+        this.name = name;
+        this.displayOrder = displayOrder;
+    }
+
 }

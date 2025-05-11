@@ -2,9 +2,9 @@ package com.hsy.preonboarding_backend31.api.product.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 
@@ -29,4 +29,15 @@ public class ProductPrice {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @Builder
+    public ProductPrice(Long id, BigDecimal basePrice, BigDecimal salePrice, BigDecimal costPrice, String currency
+            , BigDecimal taxRate, Product product) {
+        this.id = id;
+        this.basePrice = basePrice;
+        this.salePrice = salePrice;
+        this.costPrice = costPrice;
+        this.currency = currency;
+        this.taxRate = taxRate;
+        this.product = product;
+    }
 }

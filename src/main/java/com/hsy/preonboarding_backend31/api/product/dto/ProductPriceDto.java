@@ -1,6 +1,7 @@
 package com.hsy.preonboarding_backend31.api.product.dto;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,5 +18,17 @@ public class ProductPriceDto {
     private BigDecimal costPrice;
     private String currency;
     private BigDecimal taxRate;
+
+    @Builder
+    public ProductPriceDto(Long id, Long productId, BigDecimal basePrice, BigDecimal salePrice, BigDecimal costPrice
+            , String currency, BigDecimal taxRate) {
+        this.id = id;
+        this.productId = productId;
+        this.basePrice = basePrice;
+        this.salePrice = salePrice;
+        this.costPrice = costPrice;
+        this.currency = currency;
+        this.taxRate = taxRate;
+    }
 
 }

@@ -2,9 +2,9 @@ package com.hsy.preonboarding_backend31.api.product.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -29,4 +29,16 @@ public class ProductImage {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "option_id")
     private ProductOption option;
+
+    @Builder
+    public ProductImage(Long id, String url, String altText, Boolean isPrimary, Integer displayOrder
+            , Product product, ProductOption option) {
+        this.id = id;
+        this.url = url;
+        this.altText = altText;
+        this.isPrimary = isPrimary;
+        this.displayOrder = displayOrder;
+        this.product = product;
+        this.option = option;
+    }
 }

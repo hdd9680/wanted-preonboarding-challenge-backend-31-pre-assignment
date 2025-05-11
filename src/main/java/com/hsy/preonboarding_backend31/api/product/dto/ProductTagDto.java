@@ -1,6 +1,7 @@
 package com.hsy.preonboarding_backend31.api.product.dto;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,5 +12,12 @@ public class ProductTagDto {
     private Long id;
     private Long productId;
     private Long tagId;
+
+    @Builder
+    public ProductTagDto(Long id, Long productId, Long tagId) {
+        this.id = id;
+        this.productId = productId;
+        this.tagId = tagId;
+    }
 
 }

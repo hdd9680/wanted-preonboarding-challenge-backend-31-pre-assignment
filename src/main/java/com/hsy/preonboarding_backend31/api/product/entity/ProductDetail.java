@@ -2,9 +2,9 @@ package com.hsy.preonboarding_backend31.api.product.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -35,8 +35,21 @@ public class ProductDetail {
     @Column(columnDefinition = "jsonb")
     private Map<String, Object> additionalInfo;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @Builder
+    public ProductDetail(Long id, BigDecimal weight, String materials, String countryOfOrigin, String warrantyInfo
+            , String careInstructions, Map<String, Object> dimensions, Map<String, Object> additionalInfo, Product product) {
+        this.id = id;
+        this.weight = weight;
+        this.materials = materials;
+        this.countryOfOrigin = countryOfOrigin;
+        this.warrantyInfo = warrantyInfo;
+        this.careInstructions = careInstructions;
+        this.dimensions = dimensions;
+        this.additionalInfo = additionalInfo;
+        this.product = product;
+    }
 }

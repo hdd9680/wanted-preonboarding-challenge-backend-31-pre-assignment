@@ -6,9 +6,9 @@ import com.hsy.preonboarding_backend31.api.review.entity.Review;
 import com.hsy.preonboarding_backend31.api.seller.entity.Seller;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
@@ -61,4 +61,26 @@ public class Product extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
+
+    @Builder
+    public Product(Long id, String name, String slug, String shortDescription, String fullDescription, String status
+            , Seller seller, Brand brand, ProductDetail detail, ProductPrice price, List<ProductTag> tags
+            , List<ProductCategory> categories, List<ProductOptionGroup> optionGroups, List<ProductImage> images
+            , List<Review> reviews) {
+        this.id = id;
+        this.name = name;
+        this.slug = slug;
+        this.shortDescription = shortDescription;
+        this.fullDescription = fullDescription;
+        this.status = status;
+        this.seller = seller;
+        this.brand = brand;
+        this.detail = detail;
+        this.price = price;
+        this.tags = tags;
+        this.categories = categories;
+        this.optionGroups = optionGroups;
+        this.images = images;
+        this.reviews = reviews;
+    }
 }

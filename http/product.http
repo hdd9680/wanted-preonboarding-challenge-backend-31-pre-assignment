@@ -1,0 +1,104 @@
+POST http://127.0.0.1:8080/api/products
+Content-Type: application/json
+
+{
+ "name": "짱짱좋은 셔츠",
+ "slug": "super-nice-shirt",
+ "short_description": "짱짱 최고 존엄 티셔츠",
+ "full_description": "<p>이 소파는 최고급 소재로 제작되었으며...</p>",
+ "seller_id": 1,
+ "brand_id": 2,
+ "status": "ACTIVE",
+ "detail": {
+   "weight": 0.2,
+   "dimensions": {
+     "width": 53,
+     "height": 70,
+     "depth": 0.1
+   },
+   "materials": "비브라늄, 면",
+   "country_of_origin": "대한민국",
+   "warranty_info": "2년 품질 보증",
+   "care_instructions": "세탁기로 세탁해도 무방",
+   "additional_info": {
+     "assembly_required": true,
+     "assembly_time": "30분"
+   }
+ },
+ "price": {
+   "base_price": 100000,
+   "sale_price": 899990,
+   "cost_price": 30000,
+   "currency": "KRW",
+   "tax_rate": 10
+ },
+ "categories": [
+   {
+     "category_id": 5,
+     "is_primary": true
+   },
+   {
+     "category_id": 8,
+     "is_primary": false
+   }
+ ],
+ "option_groups": [
+   {
+     "name": "색상",
+     "display_order": 1,
+     "options": [
+       {
+         "name": "브라운",
+         "additional_price": 0,
+         "sku": "SOFA-BRN",
+         "stock": 10,
+         "display_order": 1
+       },
+       {
+         "name": "블랙",
+         "additional_price": 0,
+         "sku": "SOFA-BLK",
+         "stock": 15,
+         "display_order": 2
+       }
+     ]
+   },
+   {
+     "name": "소재",
+     "display_order": 2,
+     "options": [
+       {
+         "name": "천연 가죽",
+         "additional_price": 100000,
+         "sku": "SOFA-LTHR",
+         "stock": 5,
+         "display_order": 1
+       },
+       {
+         "name": "인조 가죽",
+         "additional_price": 0,
+         "sku": "SOFA-FAKE",
+         "stock": 20,
+         "display_order": 2
+       }
+     ]
+   }
+ ],
+ "images": [
+   {
+     "url": "https://example.com/images/sofa1.jpg",
+     "alt_text": "셔츠 앞면",
+     "is_primary": true,
+     "display_order": 1,
+     "option_id": null
+   },
+   {
+     "url": "https://example.com/images/sofa2.jpg",
+     "alt_text": "셔츠 뒷면",
+     "is_primary": false,
+     "display_order": 2,
+     "option_id": null
+   }
+ ],
+ "tags": [1, 4, 7]
+}
