@@ -1,18 +1,21 @@
 package com.hsy.preonboarding_backend31.api.product.entity;
 
 import com.hsy.preonboarding_backend31.api.brand.entity.Brand;
+import com.hsy.preonboarding_backend31.api.categories.entity.Category;
 import com.hsy.preonboarding_backend31.api.common.entity.BaseTimeEntity;
+import com.hsy.preonboarding_backend31.api.product.dto.ProductDto;
 import com.hsy.preonboarding_backend31.api.review.entity.Review;
 import com.hsy.preonboarding_backend31.api.seller.entity.Seller;
+import com.hsy.preonboarding_backend31.api.tags.entity.Tag;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name="products")
@@ -35,52 +38,62 @@ public class Product extends BaseTimeEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seller_id")
+    @Setter
     private Seller seller;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
+    @Setter
     private Brand brand;
 
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Setter
     private ProductDetail detail;
 
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Setter
     private ProductPrice price;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductTag> tags;
+    // Category를 ManyToMany 관계로 직접 참조
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "product_categories",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    @Builder.Default
+    private List<Category> categories = new ArrayList<>();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "product_tags",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    @Builder.Default
+    private List<Tag> tags = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductCategory> categories;
+    @Builder.Default
+    private List<ProductOptionGroup> optionGroups = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductOptionGroup> optionGroups;
+    @Builder.Default
+    private List<ProductImage> images = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductImage> images;
+    @Builder.Default
+    private List<Review> reviews = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviews;
-
-    @Builder
-    public Product(Long id, String name, String slug, String shortDescription, String fullDescription, String status
-            , Seller seller, Brand brand, ProductDetail detail, ProductPrice price, List<ProductTag> tags
-            , List<ProductCategory> categories, List<ProductOptionGroup> optionGroups, List<ProductImage> images
-            , List<Review> reviews) {
-        this.id = id;
-        this.name = name;
-        this.slug = slug;
-        this.shortDescription = shortDescription;
-        this.fullDescription = fullDescription;
-        this.status = status;
-        this.seller = seller;
-        this.brand = brand;
-        this.detail = detail;
-        this.price = price;
-        this.tags = tags;
-        this.categories = categories;
-        this.optionGroups = optionGroups;
-        this.images = images;
-        this.reviews = reviews;
+    public static Product of(ProductDto.RegistProductRequestDto registProductDto) {
+        return Product.builder()
+                .name(registProductDto.getName())
+                .slug(registProductDto.getSlug())
+                .shortDescription(registProductDto.getShortDescription())
+                .fullDescription(registProductDto.getFullDescription())
+                .seller(Seller.builder().id(registProductDto.getSellerId()).build())
+                .brand(Brand.builder().id(registProductDto.getBrandId()).build())
+                .status(registProductDto.getStatus())
+                .build();
     }
 }

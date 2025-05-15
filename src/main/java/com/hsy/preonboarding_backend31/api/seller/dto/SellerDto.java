@@ -1,15 +1,16 @@
 package com.hsy.preonboarding_backend31.api.seller.dto;
 
 import com.hsy.preonboarding_backend31.api.common.dto.BaseCreatedTimeDto;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Data
+@SuperBuilder
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class SellerDto extends BaseCreatedTimeDto {
 
     private Long id;

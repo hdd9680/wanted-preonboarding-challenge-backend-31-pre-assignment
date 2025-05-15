@@ -1,12 +1,11 @@
 package com.hsy.preonboarding_backend31.api.product.dto;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ProductImageDto {
 
     private Long id;
@@ -16,15 +15,6 @@ public class ProductImageDto {
     private Boolean isPrimary;
     private Integer displayOrder;
     private Long productOptionId;
+    private Long optionId;
 
-    @Builder
-    public ProductImageDto(Long id, Long productId, String url, String altText, Boolean isPrimary, Integer displayOrder, Long productOptionId) {
-        this.id = id;
-        this.productId = productId;
-        this.url = url;
-        this.altText = altText;
-        this.isPrimary = isPrimary;
-        this.displayOrder = displayOrder;
-        this.productOptionId = productOptionId;
-    }
 }

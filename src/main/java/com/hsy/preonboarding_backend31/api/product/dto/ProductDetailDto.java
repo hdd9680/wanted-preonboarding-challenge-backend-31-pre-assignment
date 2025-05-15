@@ -1,15 +1,14 @@
 package com.hsy.preonboarding_backend31.api.product.dto;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Map;
 
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ProductDetailDto {
 
     private Long id;
@@ -21,19 +20,5 @@ public class ProductDetailDto {
     private String warrantyInfo;
     private String careInstructions;
     private Map<String, Object> additionalInfo;
-
-    @Builder
-    public ProductDetailDto(Long id, Long productId, BigDecimal weight, Map<String, Object> dimensions, String materials
-            , String countryOfOrigin, String warrantyInfo, String careInstructions, Map<String, Object> additionalInfo) {
-        this.id = id;
-        this.productId = productId;
-        this.weight = weight;
-        this.dimensions = dimensions;
-        this.materials = materials;
-        this.countryOfOrigin = countryOfOrigin;
-        this.warrantyInfo = warrantyInfo;
-        this.careInstructions = careInstructions;
-        this.additionalInfo = additionalInfo;
-    }
 
 }

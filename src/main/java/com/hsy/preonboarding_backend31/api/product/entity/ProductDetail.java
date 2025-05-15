@@ -1,10 +1,8 @@
 package com.hsy.preonboarding_backend31.api.product.entity;
 
+import com.hsy.preonboarding_backend31.api.product.dto.ProductDetailDto;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -12,7 +10,9 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "product_details")
 public class ProductDetail {
@@ -39,17 +39,17 @@ public class ProductDetail {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Builder
-    public ProductDetail(Long id, BigDecimal weight, String materials, String countryOfOrigin, String warrantyInfo
-            , String careInstructions, Map<String, Object> dimensions, Map<String, Object> additionalInfo, Product product) {
-        this.id = id;
-        this.weight = weight;
-        this.materials = materials;
-        this.countryOfOrigin = countryOfOrigin;
-        this.warrantyInfo = warrantyInfo;
-        this.careInstructions = careInstructions;
-        this.dimensions = dimensions;
-        this.additionalInfo = additionalInfo;
-        this.product = product;
+    public static ProductDetail of(ProductDetailDto detail, Product product) {
+        return ProductDetail.builder()
+                .id(detail.getId())
+                .weight(detail.getWeight())
+                .materials(detail.getMaterials())
+                .countryOfOrigin(detail.getCountryOfOrigin())
+                .warrantyInfo(detail.getWarrantyInfo())
+                .careInstructions(detail.getCareInstructions())
+                .dimensions(detail.getDimensions())
+                .additionalInfo(detail.getAdditionalInfo())
+                .product(product)
+                .build();
     }
 }

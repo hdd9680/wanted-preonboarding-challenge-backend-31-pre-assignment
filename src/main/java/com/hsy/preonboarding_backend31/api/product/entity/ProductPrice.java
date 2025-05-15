@@ -1,15 +1,15 @@
 package com.hsy.preonboarding_backend31.api.product.entity;
 
+import com.hsy.preonboarding_backend31.api.product.dto.ProductPriceDto;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="product_prices")
 public class ProductPrice {
@@ -29,15 +29,14 @@ public class ProductPrice {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Builder
-    public ProductPrice(Long id, BigDecimal basePrice, BigDecimal salePrice, BigDecimal costPrice, String currency
-            , BigDecimal taxRate, Product product) {
-        this.id = id;
-        this.basePrice = basePrice;
-        this.salePrice = salePrice;
-        this.costPrice = costPrice;
-        this.currency = currency;
-        this.taxRate = taxRate;
-        this.product = product;
+    public static ProductPrice of(ProductPriceDto price, Product product) {
+        return ProductPrice.builder()
+                .basePrice(price.getBasePrice())
+                .salePrice(price.getSalePrice())
+                .costPrice(price.getCostPrice())
+                .currency(price.getCurrency())
+                .taxRate(price.getTaxRate())
+                .product(product)
+                .build();
     }
 }

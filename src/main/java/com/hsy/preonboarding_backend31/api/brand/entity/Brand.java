@@ -1,13 +1,12 @@
 package com.hsy.preonboarding_backend31.api.brand.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="brands")
 public class Brand {
@@ -25,13 +24,4 @@ public class Brand {
     private String logoUrl;
     private String website;
 
-    @Builder
-    public Brand(Long id, String name, String slug, String description, String logoUrl, String website) {
-        this.id = id;
-        this.name = name;
-        this.slug = slug;
-        this.description = description;
-        this.logoUrl = logoUrl;
-        this.website = website;
-    }
 }

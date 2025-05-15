@@ -2,12 +2,11 @@ package com.hsy.preonboarding_backend31.api.user.entity;
 
 import com.hsy.preonboarding_backend31.api.common.entity.BaseCreatedTimeEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Getter
+@SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name="users")

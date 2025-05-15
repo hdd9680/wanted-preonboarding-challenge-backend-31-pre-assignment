@@ -1,19 +1,16 @@
 package com.hsy.preonboarding_backend31.api.common.dto;
 
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
-@Getter
+@Data
+@SuperBuilder
+@NoArgsConstructor
 public class BaseCreatedTimeDto {
 
-    private final LocalDateTime createdAt;
+    private LocalDateTime createdAt;
 
-    public BaseCreatedTimeDto() {
-        this.createdAt = LocalDateTime.now();
-    }
-
-    public BaseCreatedTimeDto(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 }

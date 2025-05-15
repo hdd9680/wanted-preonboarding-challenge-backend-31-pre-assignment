@@ -1,15 +1,16 @@
 package com.hsy.preonboarding_backend31.api.product.entity;
 
+import com.hsy.preonboarding_backend31.api.product.dto.ProductOptionGroupDto;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="product_option_groups")
 public class ProductOptionGroup {
@@ -26,15 +27,16 @@ public class ProductOptionGroup {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @OneToMany(mappedBy = "optionGroup")
-    private List<ProductOption> options;
+    @OneToMany(mappedBy = "optionGroup", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<ProductOption> options = new ArrayList<>();
 
-    @Builder
-    public ProductOptionGroup(Long id, String name, Integer displayOrder, Product product, List<ProductOption> options) {
-        this.id = id;
-        this.name = name;
-        this.displayOrder = displayOrder;
-        this.product = product;
-        this.options = options;
+    public static ProductOptionGroup of(ProductOptionGroupDto groupDto, Product product) {
+        return ProductOptionGroup.builder()
+                .id(groupDto.getId())
+                .name(groupDto.getName())
+                .displayOrder(groupDto.getDisplayOrder())
+                .product(product)
+                .build();
     }
 }

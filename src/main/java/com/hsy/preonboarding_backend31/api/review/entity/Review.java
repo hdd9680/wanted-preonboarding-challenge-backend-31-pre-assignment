@@ -4,13 +4,13 @@ import com.hsy.preonboarding_backend31.api.common.entity.BaseTimeEntity;
 import com.hsy.preonboarding_backend31.api.product.entity.Product;
 import com.hsy.preonboarding_backend31.api.user.entity.User;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Getter
+@SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name="reviews")
 public class Review extends BaseTimeEntity {

@@ -1,13 +1,13 @@
 package com.hsy.preonboarding_backend31.api.product.entity;
 
+import com.hsy.preonboarding_backend31.api.product.dto.ProductImageDto;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="product_images")
 public class ProductImage {
@@ -30,15 +30,15 @@ public class ProductImage {
     @JoinColumn(name = "option_id")
     private ProductOption option;
 
-    @Builder
-    public ProductImage(Long id, String url, String altText, Boolean isPrimary, Integer displayOrder
-            , Product product, ProductOption option) {
-        this.id = id;
-        this.url = url;
-        this.altText = altText;
-        this.isPrimary = isPrimary;
-        this.displayOrder = displayOrder;
-        this.product = product;
-        this.option = option;
+    public static ProductImage of(ProductImageDto imageDto, Product product, ProductOption option) {
+        return ProductImage.builder()
+                .id(imageDto.getId())
+                .url(imageDto.getUrl())
+                .altText(imageDto.getAltText())
+                .isPrimary(imageDto.getIsPrimary())
+                .displayOrder(imageDto.getDisplayOrder())
+                .product(product)
+                .option(option)
+                .build();
     }
 }

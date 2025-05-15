@@ -1,16 +1,16 @@
 package com.hsy.preonboarding_backend31.api.product.entity;
 
+import com.hsy.preonboarding_backend31.api.product.dto.ProductOptionDto;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="product_options")
 public class ProductOption {
@@ -34,16 +34,15 @@ public class ProductOption {
     @OneToMany(mappedBy = "option", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductImage> productImages;
 
-    @Builder
-    public ProductOption(Long id, String name, BigDecimal additionalPrice, String sku, Integer stock, Integer displayOrder
-            , ProductOptionGroup optionGroup, List<ProductImage> productImages) {
-        this.id = id;
-        this.name = name;
-        this.additionalPrice = additionalPrice;
-        this.sku = sku;
-        this.stock = stock;
-        this.displayOrder = displayOrder;
-        this.optionGroup = optionGroup;
-        this.productImages = productImages;
+    public static ProductOption of(ProductOptionDto optionDto, ProductOptionGroup group) {
+        return ProductOption.builder()
+                .id(optionDto.getId())
+                .name(optionDto.getName())
+                .additionalPrice(optionDto.getAdditionalPrice())
+                .sku(optionDto.getSku())
+                .stock(optionDto.getStock())
+                .displayOrder(optionDto.getDisplayOrder())
+                .optionGroup(group)
+                .build();
     }
 }
