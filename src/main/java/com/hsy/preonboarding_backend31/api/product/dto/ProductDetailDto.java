@@ -6,8 +6,6 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
 public class ProductDetailDto {
 

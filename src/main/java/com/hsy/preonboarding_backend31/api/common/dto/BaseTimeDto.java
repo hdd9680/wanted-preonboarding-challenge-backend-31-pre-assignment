@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 
 @Data
 @SuperBuilder
-@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class BaseTimeDto extends BaseCreatedTimeDto {
 

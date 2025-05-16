@@ -3,8 +3,6 @@ package com.hsy.preonboarding_backend31.api.brand.dto;
 import lombok.*;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
 public class BrandDto {
 

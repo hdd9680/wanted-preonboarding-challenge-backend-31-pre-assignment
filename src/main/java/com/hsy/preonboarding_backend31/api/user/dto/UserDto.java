@@ -6,7 +6,6 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class UserDto extends BaseCreatedTimeDto {
 

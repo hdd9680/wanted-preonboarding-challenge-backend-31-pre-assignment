@@ -1,10 +1,10 @@
 package com.hsy.preonboarding_backend31.api.categories.dto;
 
-import lombok.*;
+import com.hsy.preonboarding_backend31.api.categories.entity.Category;
+import lombok.Builder;
+import lombok.Data;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
 public class CategoryDto {
 
@@ -16,5 +16,33 @@ public class CategoryDto {
     private Integer level;
     private String imageUrl;
     private Long parentId;
+    private ParentCategoryDto parent;
 
+    @Data
+    @Builder
+    public static class ParentCategoryDto {
+        private Long id;
+        private String name;
+        private String slug;
+
+        public static ParentCategoryDto of(Category category) {
+            return ParentCategoryDto.builder()
+                    .id(category.getId())
+                    .name(category.getName())
+                    .slug(category.getSlug())
+                    .build();
+        }
+    }
+
+    public static CategoryDto of(Category category) {
+        return CategoryDto.builder()
+                .id(category.getId())
+                .name(category.getName())
+                .slug(category.getSlug())
+                .description(category.getDescription())
+                .level(category.getLevel())
+                .imageUrl(category.getImageUrl())
+                .parent(ParentCategoryDto.of(category.getParent()))
+                .build();
+    }
 }

@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 @Data
 @SuperBuilder
-@NoArgsConstructor
 public class BaseCreatedTimeDto {
 
     private LocalDateTime createdAt;

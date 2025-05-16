@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Data
 @SuperBuilder
-@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class SellerDto extends BaseCreatedTimeDto {
 

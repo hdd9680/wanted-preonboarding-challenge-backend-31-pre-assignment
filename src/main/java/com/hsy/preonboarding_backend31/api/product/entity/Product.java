@@ -96,4 +96,23 @@ public class Product extends BaseTimeEntity {
                 .status(registProductDto.getStatus())
                 .build();
     }
+
+    public static Product modifyProduct(ProductDto.ModifyProductRequestDto modifyDto, Product product) {
+        if (modifyDto.getName() != null)
+            product.name = modifyDto.getName();
+
+        if (modifyDto.getSlug() != null)
+            product.slug = modifyDto.getSlug();
+
+        if (modifyDto.getShortDescription() != null)
+            product.shortDescription = modifyDto.getShortDescription();
+
+        if (modifyDto.getFullDescription() != null)
+            product.fullDescription = modifyDto.getFullDescription();
+
+        if (modifyDto.getStatus() != null)
+            product.status = modifyDto.getStatus();
+
+        return product;
+    }
 }

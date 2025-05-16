@@ -30,7 +30,8 @@ public class ProductPrice {
     private Product product;
 
     public static ProductPrice of(ProductPriceDto price, Product product) {
-        return ProductPrice.builder()
+        return price == null ? null :
+                ProductPrice.builder()
                 .basePrice(price.getBasePrice())
                 .salePrice(price.getSalePrice())
                 .costPrice(price.getCostPrice())
@@ -38,5 +39,21 @@ public class ProductPrice {
                 .taxRate(price.getTaxRate())
                 .product(product)
                 .build();
+    }
+
+    public static ProductPrice modifyProductPrice(ProductPriceDto priceDto, ProductPrice price) {
+        if (priceDto.getBasePrice() != null)
+            price.basePrice = priceDto.getBasePrice();
+
+        if (priceDto.getSalePrice() != null)
+            price.salePrice = priceDto.getSalePrice();
+
+        if (priceDto.getCurrency() != null)
+            price.currency = priceDto.getCurrency();
+
+        if (priceDto.getTaxRate() != null)
+            price.taxRate = priceDto.getTaxRate();
+
+        return price;
     }
 }
