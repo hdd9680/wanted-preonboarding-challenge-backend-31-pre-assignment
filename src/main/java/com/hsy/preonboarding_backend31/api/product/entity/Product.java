@@ -85,7 +85,7 @@ public class Product extends BaseTimeEntity {
     @Builder.Default
     private List<Review> reviews = new ArrayList<>();
 
-    public static Product of(ProductDto.RegistProductRequestDto registProductDto) {
+    public static Product from(ProductDto.RegistProductRequestDto registProductDto) {
         return Product.builder()
                 .name(registProductDto.getName())
                 .slug(registProductDto.getSlug())

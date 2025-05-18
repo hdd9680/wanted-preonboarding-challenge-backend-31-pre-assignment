@@ -25,7 +25,7 @@ public class CategoryDto {
         private String name;
         private String slug;
 
-        public static ParentCategoryDto of(Category category) {
+        public static ParentCategoryDto from(Category category) {
             return ParentCategoryDto.builder()
                     .id(category.getId())
                     .name(category.getName())
@@ -34,7 +34,7 @@ public class CategoryDto {
         }
     }
 
-    public static CategoryDto of(Category category) {
+    public static CategoryDto from(Category category) {
         return CategoryDto.builder()
                 .id(category.getId())
                 .name(category.getName())
@@ -42,7 +42,7 @@ public class CategoryDto {
                 .description(category.getDescription())
                 .level(category.getLevel())
                 .imageUrl(category.getImageUrl())
-                .parent(ParentCategoryDto.of(category.getParent()))
+                .parent(ParentCategoryDto.from(category.getParent()))
                 .build();
     }
 }

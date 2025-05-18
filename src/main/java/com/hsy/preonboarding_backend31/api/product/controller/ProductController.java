@@ -22,7 +22,7 @@ public class ProductController {
     @GetMapping("/{id}")
     public ApiResponse<ProductDto.ProductResponseDto> getProduct(@PathVariable final Long id) {
         ProductDto.ProductResponseDto response = productsService.getProductById(id);
-        return ApiResponse.success("상품 상세 정보를 성공적으로 조회했습니다.", null);
+        return ApiResponse.success("상품 상세 정보를 성공적으로 조회했습니다.", response);
     }
 
     @PutMapping("/{id}")

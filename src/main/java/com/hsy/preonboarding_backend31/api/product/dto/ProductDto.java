@@ -4,8 +4,8 @@ import com.hsy.preonboarding_backend31.api.brand.dto.BrandDto;
 import com.hsy.preonboarding_backend31.api.categories.dto.CategoryDto;
 import com.hsy.preonboarding_backend31.api.common.dto.BaseTimeDto;
 import com.hsy.preonboarding_backend31.api.product.entity.Product;
-import com.hsy.preonboarding_backend31.api.product.entity.ProductTag;
 import com.hsy.preonboarding_backend31.api.seller.dto.SellerDto;
+import com.hsy.preonboarding_backend31.api.tags.dto.TagDto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -83,19 +83,33 @@ public class ProductDto extends BaseTimeDto {
         private SellerDto seller;
         private BrandDto brand;
         private String status;
-        private LocalDateTime createdAt;
-        private LocalDateTime updatedAt;
         private ProductDetailDto detail;
         private ProductPriceDto price;
         private List<CategoryDto> categories;
         private List<ProductOptionGroupDto> optionGroups;
         private List<ProductImageDto> images;
-        private List<ProductTag> tags;
+        private List<TagDto> tags;
         private RatingSummary rating;
         private List<ProductSummary> relatedProducts;
 
-        public static ProductResponseDto of(Product product) {
-            return ProductDto.ProductResponseDto.builder()
+        public static ProductResponseDto from(Product product) {
+            return ProductResponseDto.builder()
+                    .id(product.getId())
+                    .name(product.getName())
+                    .slug(product.getSlug())
+                    .shortDescription(product.getShortDescription())
+                    .fullDescription(product.getFullDescription())
+                    .status(product.getStatus())
+                    .createdAt(product.getCreatedAt())
+                    .updatedAt(product.getUpdatedAt())
+                    .seller(SellerDto.from(product.getSeller()))
+                    .brand(BrandDto.from(product.getBrand()))
+                    .detail(ProductDetailDto.from(product.getDetail()))
+                    .price(ProductPriceDto.from(product.getPrice()))
+                    .categories(product.getCategories().stream().map(CategoryDto::from).toList())
+                    .optionGroups(product.getOptionGroups().stream().map(ProductOptionGroupDto::from).toList())
+                    .images(product.getImages().stream().map(ProductImageDto::from).toList())
+                    .tags(product.getTags().stream().map(TagDto::from).toList())
                     .build();
         }
     }

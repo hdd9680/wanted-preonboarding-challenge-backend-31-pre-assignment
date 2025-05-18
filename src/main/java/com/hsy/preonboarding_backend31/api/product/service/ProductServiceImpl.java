@@ -34,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public ProductDto.ProductResponseDto registProduct(final ProductDto.RegistProductRequestDto request) {
 
-        Product product = Product.of(request);
+        Product product = Product.from(request);
 
         Long sellerId = request.getSellerId();
         if(sellerId != null) {
@@ -105,16 +105,16 @@ public class ProductServiceImpl implements ProductService {
         }
 
         productRepository.save(product);
-        return ProductDto.ProductResponseDto.of(product);
+        return ProductDto.ProductResponseDto.from(product);
     }
 
     @Override
     @Transactional(readOnly = true)
     public ProductDto.ProductResponseDto getProductById(Long id) {
 
-        Product product = productRepository.findById(id).orElseThrow(() -> ApiException.notFound("존재하지 않는 상품입니다."));
+        Product product = productRepository.findById(id).orElseThrow(() -> ApiException.notFound("요청한 상품을 찾을수없습니다."));
 
-        return ProductDto.ProductResponseDto.of(product);
+        return ProductDto.ProductResponseDto.from(product);
     }
 
     @Override
@@ -167,9 +167,7 @@ public class ProductServiceImpl implements ProductService {
         }
 
         product = productRepository.save(product);
-
-
-        return ProductDto.ProductResponseDto.of(null);
+        return ProductDto.ProductResponseDto.from(product);
     }
 
 }

@@ -102,3 +102,7 @@ Content-Type: application/json
  ],
  "tags": [1, 4, 7]
 }
+
+###
+@id = 1
+GET 127.0.0.1:8080/api/products/{{id}}

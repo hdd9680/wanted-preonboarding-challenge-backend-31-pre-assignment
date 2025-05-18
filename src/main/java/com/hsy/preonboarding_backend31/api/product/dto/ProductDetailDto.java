@@ -1,5 +1,6 @@
 package com.hsy.preonboarding_backend31.api.product.dto;
 
+import com.hsy.preonboarding_backend31.api.product.entity.ProductDetail;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -19,4 +20,16 @@ public class ProductDetailDto {
     private String careInstructions;
     private Map<String, Object> additionalInfo;
 
+    public static ProductDetailDto from(ProductDetail detail) {
+        return ProductDetailDto.builder()
+                .id(detail.getId())
+                .weight(detail.getWeight())
+                .dimensions(detail.getDimensions())
+                .materials(detail.getMaterials())
+                .countryOfOrigin(detail.getCountryOfOrigin())
+                .warrantyInfo(detail.getWarrantyInfo())
+                .careInstructions(detail.getCareInstructions())
+                .additionalInfo(detail.getAdditionalInfo())
+                .build();
+    }
 }
